@@ -1,10 +1,29 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css'
-import { Button } from './components/ui/button'
+import { Button } from './components/ui/button';
+import AppLayout from './layout/app-layout';
+import Landing from './pages/Landing';
+import Onboarding from './pages/Onboarding';
+
+const router = createBrowserRouter([
+   {
+     element: <AppLayout/>,
+     children:[
+      {
+        path:'/',
+        element:<Landing/>
+      },
+      {
+        path:'/onboarding',
+        element:<Onboarding/>
+      }
+     ]
+   },
+])
+
 function App() {
   return (
-    <div>
-       <Button>Login</Button>     
-    </div>
+    <RouterProvider router={router}/>
       
   )
 }
