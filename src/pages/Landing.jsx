@@ -17,12 +17,12 @@ const Landing = () => {
         <p className='text-gray-300 sm:mt-4 text-xs sm:text-xl'>
           Explore thousands of job listings or find the perfect candidate</p>
       </section>
-      <div>
+      <div className='flex gap-6 justify-center'>
         <Link to='/jobs'>
-        <Button>Find Jobs</Button>
+        <Button variant="blue" size="xl">Find Jobs</Button>
         </Link>
         <Link to='/post-job'>
-        <Button>Post a Job</Button>
+        <Button variant="destructive" size="xl">Post a Job</Button>
         </Link>
       </div>
       
