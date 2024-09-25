@@ -7,6 +7,18 @@ import {
   CarouselContent,
   CarouselItem
 } from "@/components/ui/carousel"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const companies = [
   { name: "amazon", path: amazonLogo, id: 1 },
@@ -27,6 +39,8 @@ import microsoftLogo from '../assets/microsoft.svg';
 import netflixLogo from '../assets/netflix.png';
 import uberLogo from '../assets/uber.svg';
 import Autoplay from 'embla-carousel-autoplay'
+import banner from '../assets/banner.jpeg';
+import faqs from '../data/faq.json'
 const Landing = () => {
   return (
     <main className='flex flex-col gap-10 sm:gap-20 py-10 sm:py-10'>
@@ -63,6 +77,36 @@ const Landing = () => {
         })}
       </CarouselContent>
     </Carousel>
+    <img src={banner} alt='banner image'/>
+    <section className='grid grid-col-1 md:grid-cols-2 gap-4'>
+    <Card>
+     <CardHeader>
+     <CardTitle>For Job Seekers</CardTitle>
+    </CardHeader>
+    <CardContent>
+     Search and apply for jobs, track applications, and more
+    </CardContent>
+   </Card>
+   <Card>
+     <CardHeader>
+     <CardTitle>For Employers</CardTitle>
+    </CardHeader>
+    <CardContent>
+     Post Jobs, manage applications, and find the best candidates
+    </CardContent>
+   </Card>
+    </section>
+   <Accordion type="single" collapsible>
+    {faqs.map((faq,index)=>{
+     return(
+      <AccordionItem key={index} value={`item-${index+1}`}>
+      <AccordionTrigger>{faq.question}</AccordionTrigger>
+      <AccordionContent>{faq.answer}</AccordionContent>
+      </AccordionItem>
+     )
+    })}
+   </Accordion>
+
     </main>
   )
 }
