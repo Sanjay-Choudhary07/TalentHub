@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 import logo from '../assets/logo-lg.png';
 import {Button} from './ui/button'
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from '@clerk/clerk-react';
 import { BriefcaseBusiness, Heart, PenBox } from 'lucide-react';
 const Header = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [search, setSearch] = useSearchParams();
+  const {user} = useUser();
   useEffect(()=>{
     if(search.get("sign-in")){
       setShowSignin(true);
@@ -29,12 +30,13 @@ const Header = () => {
       <Button variant="outline" onClick={()=>setShowSignin(true)}>Login</Button>
       </SignedOut>
       <SignedIn>
-      <Button variant="destructive" className="rounded-full">
+        {user?.unsafeMetadata?.role === "recuriter" && (
+          <Link to="/post-job">
+        <Button variant="destructive" className="rounded-full">
         <PenBox size={20} className='mr-2'/>
           Post a Job
         </Button>
-        <Link to="/post-job">
-        </Link>
+        </Link>)}
         <UserButton appearance={{
           elements:{
             avatarBox:"w-10 h-10",
