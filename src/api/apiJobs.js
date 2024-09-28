@@ -1,7 +1,7 @@
 import supabaseClient from "@/utils/superbase";
 
 
-export async function getJobs(token, {location, company_id, searchQuery}){
+export async function getJobs(token,){
     const supabase = await SupabaseClient(token);
     let query = supabase.from("jobs").select("*");
     const {data, error}= await query;
